@@ -191,10 +191,12 @@ nav a:hover {
   background-color: #111;
 }
 
+/* Get in Touch - Contact Form and Console */
 .contact-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  grid-template-columns: 1fr 1fr;  /* Set columns to 2 */
+  gap: 2rem;                      /* Space between columns */
+  width: 100%;
 }
 
 .contact-form input,
@@ -206,6 +208,61 @@ nav a:hover {
   color: white;
   border: 1px solid #444;
   border-radius: 0.4rem;
+}
+
+.contact-box {
+  background-color: #111;
+  padding: 2rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+  color: #fff;
+  width: 100%;
+  margin-top: 3rem;
+}
+
+.contact-box h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.contact-box p {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.contact-form button {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact-form button:hover {
+  background-color: #ddd;
+}
+
+/* Styling for console code */
+.console-code.mini {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+}
+
+/* Responsive Layout: Form and Box side by side on larger screens */
+@media (min-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr 1fr; /* Two columns for wider screens */
+  }
+}
+
+@media (max-width: 768px) {
+  /* For smaller screens, the elements will stack */
+  .contact-grid {
+    grid-template-columns: 1fr; /* Single column layout */
+  }
 }
 
 footer {
