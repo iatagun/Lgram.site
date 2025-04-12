@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Linguistic Alchemist</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <h1>Linguistic Alchemist</h1>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#blog">Blog</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section id="about" class="section bg-img-about">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-text">
+          <h2>Who am I?</h2>
+          <p>
+            I’m a <span class="highlight">linguistic alchemist</span> — turning syntax into structure, silence into meaning,
+            and code into conversation. I build intelligent systems that learn language like humans do: context-first,
+            meaning-aware, and full of nuance.
+          </p>
+          <button class="btn">Read More</button>
+        </div>
+        <div class="console-box">
+          <div class="console-header">VSCode.py</div>
+          <div class="console-code">
+<pre><code>def linguistic_alchemy(input_text):
+  if "context" in input_text and "meaning" in input_text:
+    return "🔪 Alchemy successful!"
+  else:
+    return "🔍 Needs more syntax essence."
+</code></pre>
+          </div>
+          <div class="console-input">
+            <label for="alchemyInput">Enter Input:</label>
+            <input type="text" id="alchemyInput" placeholder="e.g., This has context and meaning" />
+          </div>
+          <div class="console-output" id="alchemyConsole">
+            🔍 Waiting for input...
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="blog" class="section dark">
+    <h2 class="section-title">Latest Writings</h2>
+    <div class="card-grid" id="blogPosts"></div>
+    <div class="center"><button class="btn">Read More</button></div>
+  </section>
+
+  <section id="projects" class="section bg-img-projects">
+    <div class="section-inner">
+      <h2>Recent Projects</h2>
+      <p>
+        From context-aware AI companions to experimental syntax analyzers — I build systems that think before they speak.
+      </p>
+    </div>
+  </section>
+
+  <section class="section dark">
+    <div class="card-grid" id="projectCards"></div>
+    <div class="center"><button class="btn">Read More</button></div>
+  </section>
+
+  <section id="contact" class="section dark">
+  <h2 class="section-title">Get in Touch</h2>
+  <div class="contact-grid">
+    <form class="contact-form">
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea placeholder="Your Message" rows="5" required></textarea>
+      <button class="btn" type="submit">Send Message</button>
+    </form>
+  </div>
+  <div class="contact-box">
+    <h3>Why Reach Out?</h3>
+    <p>
+      Whether you're building an AI system, planning a linguistic experiment, or just want to geek out about
+      Centering Theory — I'm always up for a good conversation.
+    </p>
+    <p>Collaboration, consulting, or just curiosity — the inbox is always open.</p>
+    <div class="console-code mini">
+      <pre><code>def reach_out(idea):
+  if "AI" in idea or "Language" in idea:
+    return "Let's build something meaningful."
+  else:
+    return "Still curious — let's talk."</code></pre>
+    </div>
+  </div>
+</section>
+
+
+
+  <footer>
+    <p>© <span id="year"></span> Linguistic Alchemist. All rights reserved.</p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
