@@ -1,10 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Linguistic Alchemist</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 </head>
 <body>
   <header>
@@ -35,10 +36,10 @@
           <div class="console-header">VSCode.py</div>
           <div class="console-code">
             <pre><code>def linguistic_alchemy(input_text):
-              if "context" in input_text and "meaning" in input_text:
-                return "🔪 Alchemy successful!"
-              else:
-                return "🔍 Needs more syntax essence."
+    if "context" in input_text and "meaning" in input_text:
+        return "🔪 Alchemy successful!"
+    else:
+        return "🔍 Needs more syntax essence."
             </code></pre>
           </div>
           <div class="console-input">
@@ -82,20 +83,32 @@
         <textarea placeholder="Your Message" rows="5" required></textarea>
         <button class="btn" type="submit">Send Message</button>
       </form>
-      <div class="contact-box">
+      <div class="contact-box" style="margin-top: -0.1rem;">
         <h3>Why Reach Out?</h3>
         <p>
           Whether you're building an AI system, planning a linguistic experiment, or just want to geek out about
           Centering Theory — I'm always up for a good conversation.
         </p>
         <p>Collaboration, consulting, or just curiosity — the inbox is always open.</p>
-        <div class="console-code mini">
-          <pre><code>def reach_out(idea):
+        
+<div class="console-box" >
+  <div class="console-header">VSCode.py</div>
+  <div class="console-code">
+    <pre><code>def reach_out(idea):
     if "AI" in idea or "Language" in idea:
-      return "Let's build something meaningful."
+        return "Let's build something meaningful."
     else:
-      return "Still curious — let's talk."</code></pre>
-        </div>
+        return "Still curious — let's talk."</code></pre>
+  </div>
+  <div class="console-input">
+    <label for="reachInput">Enter Input:</label>
+    <input type="text" id="reachInput" placeholder="e.g., AI Language" />
+  </div>
+  <div class="console-output" id="reachConsole">
+    🔍 Waiting for input...
+  </div>
+</div>
+
       </div>
     </div>
   </section>
@@ -107,6 +120,25 @@
     <p>© <span id="year"></span> Linguistic Alchemist. All rights reserved.</p>
   </footer>
 
-  <script src="main.js"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const reachInput = document.getElementById("reachInput");
+  const reachConsole = document.getElementById("reachConsole");
+
+  if (reachInput && reachConsole) {
+    reachInput.addEventListener("input", (e) => {
+      const val = e.target.value;
+      if (val.includes("AI") || val.includes("Language")) {
+        reachConsole.textContent = "🧪 Let's build something meaningful.";
+      } else {
+        reachConsole.textContent = "🔍 Still curious — let's talk.";
+      }
+    });
+  }
+});
+</script>
+
 </body>
 </html>
