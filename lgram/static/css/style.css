@@ -274,43 +274,29 @@ footer {
   background-color: #0f0f0f;
 }
 
-.console-code pre {
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  overflow-x: auto;
-  font-size: 0.9rem;
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
-.console-code code {
-  display: block;
-  width: 100%;
-  overflow-x: auto;
-}
-
-/* Mobile optimization */
+/* Responsive düzeltmeleri */
 @media (max-width: 768px) {
-  .console-code {
-    font-size: 0.8rem;
-    padding: 0.5rem;
+  .about-grid,
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 
+  .console-code,
+  .console-output,
   .console-input input {
-    font-size: 1rem;
+    font-size: 0.9rem;
+    overflow-x: auto;
+    word-wrap: break-word;
   }
 
-  .console-output {
-    font-size: 0.85rem;
-  }
-}
-@media (max-width: 768px) {
-  .about-grid {
-    grid-template-columns: 1fr !important;  /* Kartları alt alta diz */
-    gap: 1.5rem;                            /* Mobilde daha az boşluk */
+  .console-code pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-x: auto;
   }
 
   .console-box {
-    margin-top: 0; /* mobilde hizalama sorunları varsa kaldırır */
+    width: 100%;
   }
 }

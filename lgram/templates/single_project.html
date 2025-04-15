@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section dark" style="background-image: url('https://picsum.photos/seed/code{{ project.slug }}/1200/600/?blur'); background-size: cover; background-position: center;">
+  <div class="section-inner" style="background-color: rgba(0,0,0,0.6); padding: 2rem; border-radius: 1rem;">
+    <article class="project-detail">
+      <h1 class="section-title">{{ project.title }}</h1>
+      <p><em>{{ project.created_at|date:"F j, Y" }}</em></p>
+      {% if project.image %}
+        <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-image" />
+      {% endif %}
+      <div class="project-description">
+        {{ project.content|safe }}
+      </div>
+      <div class="center">
+        <a href="{% url 'projects' %}" class="btn" style="margin-top: 1rem; display: inline-block; font-size: 0.85rem; padding: 0.4rem 0.8rem;">← Back to Projects</a>
+      </div>
+    </article>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section bg-img-projects">
+  <div class="section-inner">
+    <h2>Projects</h2>
+    <div class="card-grid">
+      {% for project in projects %}
+        <article class="responsive-card">
+          <img src="https://picsum.photos/seed/code{{ forloop.counter }}/600/400" alt="Post illustration">
+          {% if project.image %}
+            <img src="{{ project.image.url }}" alt="{{ project.title }}" />
+          {% endif %}
+          <div class="z-10">
+            <h3>{{ project.title }}</h3>
+            <a href="{% url 'single_project' slug=project.slug %}" class="btn" style="margin-top: 1rem; display: inline-block; font-size: 0.85rem; padding: 0.4rem 0.8rem;">View Project</a>
+          </div>
+        </article>
+      {% empty %}
+        <p>No projects found.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

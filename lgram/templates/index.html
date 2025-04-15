@@ -1,144 +1,124 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Linguistic Alchemist</title>
-  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-</head>
-<body>
-  <header>
-    <div class="container nav">
-      <h1>Linguistic Alchemist</h1>
-      <nav>
-        <a href="#about">About</a>
-        <a href="#blog">Blog</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
-
-  <section id="about" class="section bg-img-about">
-    <div class="section-inner">
-      <div class="about-grid">
-        <div class="about-text">
-          <h2>Who am I?</h2>
-          <p>
-            I’m a <span class="highlight">linguistic alchemist</span> — turning syntax into structure, silence into meaning,
-            and code into conversation. I build intelligent systems that learn language like humans do: context-first,
-            meaning-aware, and full of nuance.
-          </p>
-          <button class="btn">Read More</button>
-        </div>
-        <div class="console-box">
-          <div class="console-header">VSCode.py</div>
-          <div class="console-code">
-            <pre><code>def linguistic_alchemy(input_text):
+{% extends "base.html" %}
+{% block content %}
+<section id="about" class="section bg-img-about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-text">
+        <h2>Who am I?</h2>
+        <p>
+          I’m a <span class="highlight">linguistic alchemist</span> — turning syntax into structure, silence into meaning,
+          and code into conversation. I build intelligent systems that learn language like humans do: context-first,
+          meaning-aware, and full of nuance.
+        </p>
+        <button class="btn">Read More</button>
+      </div>
+      <div class="console-box">
+        <div class="console-header">VSCode.py</div>
+        <div class="console-code">
+          <pre><code>def linguistic_alchemy(input_text):
     if "context" in input_text and "meaning" in input_text:
         return "🔪 Alchemy successful!"
     else:
-        return "🔍 Needs more syntax essence."
-            </code></pre>
-          </div>
-          <div class="console-input">
-            <label for="alchemyInput">Enter Input:</label>
-            <input type="text" id="alchemyInput" placeholder="e.g., This has context and meaning" />
-          </div>
-          <div class="console-output" id="alchemyConsole">
-            🔍 Waiting for input...
-          </div>
+        return "🔍 Needs more syntax essence."</code></pre>
+        </div>
+        <div class="console-input">
+          <label for="alchemyInput">Enter Input:</label>
+          <input type="text" id="alchemyInput" placeholder="e.g., This has context and meaning" />
+        </div>
+        <div class="console-output" id="alchemyConsole">
+          🔍 Waiting for input...
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="blog" class="section dark">
-    <h2 class="section-title">Latest Writings</h2>
-    <div class="card-grid" id="blogPosts"></div>
-    <div class="center"><button class="btn">Read More</button></div>
-  </section>
+<section id="blog" class="section dark">
+  <h2 class="section-title">Latest Writings</h2>
+  <div class="card-grid">
+    {% for post in blog_posts %}
+      <article class="responsive-card">
+        <img src="https://picsum.photos/seed/code{{ forloop.counter }}/600/400" alt="Post illustration">
+        <div class="z-10">
+          <div class="category">Blog</div>
+          <h3>{{ post.title }}</h3>
+          <p>{{ post.created_at|date:"F j, Y" }}</p>
+          <a href="{% url 'single_post' slug=post.slug %}" class="btn" style="margin-top: 1rem; display: inline-block; font-size: 0.85rem; padding: 0.4rem 0.8rem;">Read More</a>
+        </div>
+      </article>
+    {% empty %}
+      <p>No blog posts found.</p>
+    {% endfor %}
+  </div>
+  <div class="center"><a href="{% url 'blog' %}" class="btn" style="margin-top: 1rem; display: inline-block; font-size: 0.85rem; padding: 0.4rem 0.8rem;">See All</a></div>
+</section>
 
-  <section id="projects" class="section bg-img-projects">
-    <div class="section-inner">
-      <h2>Recent Projects</h2>
+<section id="projects" class="section bg-img-projects">
+  <div class="section-inner">
+    <h2>Recent Projects</h2>
+    <p>
+      From context-aware AI companions to experimental syntax analyzers — I build systems that think before they speak.
+    </p>
+  </div>
+</section>
+
+<section class="section dark">
+  <div class="card-grid">
+    {% for project in projects %}
+      <article class="responsive-card">
+        {% if project.image %}
+          <img src="{{ project.image.url }}" alt="{{ project.title }}">
+        {% else %}
+          <img src="https://picsum.photos/seed/project{{ forloop.counter }}/600/400" alt="Project">
+        {% endif %}
+        <div class="z-10">
+          <div class="category">Project</div>
+          <h3>{{ project.title }}</h3>
+          <a href="{% url 'single_project' slug=project.slug %}" class="btn" style="margin-top: 1rem; display: inline-block; font-size: 0.85rem; padding: 0.4rem 0.8rem;">View Project</a>
+        </div>
+      </article>
+    {% empty %}
+      <p>No projects found.</p>
+    {% endfor %}
+  </div>
+  <div class="center"><a href="{% url 'projects' %}" class="btn">See All</a></div>
+</section>
+
+<section id="contact" class="section dark">
+  <h2 class="section-title">Get in Touch</h2>
+  <div class="contact-grid">
+    <form class="contact-form">
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea placeholder="Your Message" rows="5" required></textarea>
+      <button class="btn" type="submit">Send Message</button>
+    </form>
+    <div class="contact-box" style="margin-top: -0.1rem;">
+      <h3>Why Reach Out?</h3>
       <p>
-        From context-aware AI companions to experimental syntax analyzers — I build systems that think before they speak.
+        Whether you're building an AI system, planning a linguistic experiment, or just want to geek out about
+        Centering Theory — I'm always up for a good conversation.
       </p>
-    </div>
-  </section>
+      <p>Collaboration, consulting, or just curiosity — the inbox is always open.</p>
 
-  <section class="section dark">
-    <div class="card-grid" id="projectCards"></div>
-    <div class="center"><button class="btn">Read More</button></div>
-  </section>
-
-  <section id="contact" class="section dark">
-    <h2 class="section-title">Get in Touch</h2>
-    <div class="contact-grid">
-      <form class="contact-form">
-        <input type="text" placeholder="Your Name" required />
-        <input type="email" placeholder="Your Email" required />
-        <textarea placeholder="Your Message" rows="5" required></textarea>
-        <button class="btn" type="submit">Send Message</button>
-      </form>
-      <div class="contact-box" style="margin-top: -0.1rem;">
-        <h3>Why Reach Out?</h3>
-        <p>
-          Whether you're building an AI system, planning a linguistic experiment, or just want to geek out about
-          Centering Theory — I'm always up for a good conversation.
-        </p>
-        <p>Collaboration, consulting, or just curiosity — the inbox is always open.</p>
-        
-<div class="console-box" >
-  <div class="console-header">VSCode.py</div>
-  <div class="console-code">
-    <pre><code>def reach_out(idea):
+      <div class="console-box">
+        <div class="console-header">VSCode.py</div>
+        <div class="console-code">
+          <pre><code>def reach_out(idea):
     if "AI" in idea or "Language" in idea:
         return "Let's build something meaningful."
     else:
         return "Still curious — let's talk."</code></pre>
-  </div>
-  <div class="console-input">
-    <label for="reachInput">Enter Input:</label>
-    <input type="text" id="reachInput" placeholder="e.g., AI Language" />
-  </div>
-  <div class="console-output" id="reachConsole">
-    🔍 Waiting for input...
-  </div>
-</div>
-
+        </div>
+        <div class="console-input">
+          <label for="reachInput">Enter Input:</label>
+          <input type="text" id="reachInput" placeholder="e.g., AI Language" />
+        </div>
+        <div class="console-output" id="reachConsole">
+          🔍 Waiting for input...
+        </div>
       </div>
     </div>
-  </section>
-  
-
-
-
-  <footer>
-    <p>© <span id="year"></span> Linguistic Alchemist. All rights reserved.</p>
-  </footer>
-
-  <script src="{% static 'js/main.js' %}"></script>
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  const reachInput = document.getElementById("reachInput");
-  const reachConsole = document.getElementById("reachConsole");
-
-  if (reachInput && reachConsole) {
-    reachInput.addEventListener("input", (e) => {
-      const val = e.target.value;
-      if (val.includes("AI") || val.includes("Language")) {
-        reachConsole.textContent = "🧪 Let's build something meaningful.";
-      } else {
-        reachConsole.textContent = "🔍 Still curious — let's talk.";
-      }
-    });
-  }
-});
-</script>
-
-</body>
-</html>
+  </div>
+</section>
+{% endblock %}

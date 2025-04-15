@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Linguistic Alchemist</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <h1><a href="{% url 'index' %}" style="text-decoration: none; color: inherit;">Linguistic Alchemist</a></h1>
+
+      <nav>
+        <a href="{% url 'index' %}#about">About</a>
+        <a href="{% url 'blog' %}">Blog</a>
+        <a href="{% url 'projects' %}">Projects</a>
+        <a href="{% url 'index' %}#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  {% block content %}{% endblock %}
+
+  <footer>
+    <p>© <span id="year"></span> Linguistic Alchemist. All rights reserved.</p>
+  </footer>
+
+  <script src="{% static 'js/main.js' %}"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const reachInput = document.getElementById("reachInput");
+  const reachConsole = document.getElementById("reachConsole");
+
+  if (reachInput && reachConsole) {
+    reachInput.addEventListener("input", (e) => {
+      const val = e.target.value;
+      if (val.includes("AI") || val.includes("Language")) {
+        reachConsole.textContent = "🧪 Let's build something meaningful.";
+      } else {
+        reachConsole.textContent = "🔍 Still curious — let's talk.";
+      }
+    });
+  }
+});
+</script>
+
+</body>
+</html>

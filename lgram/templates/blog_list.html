@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section bg-img-about">
+  <div class="section-inner">
+    <h2>Blog Posts</h2>
+    <div class="card-grid">
+      {% for post in posts %}
+        <article class="responsive-card">
+          <img src="https://picsum.photos/seed/code{{ forloop.counter }}/600/400" alt="Post illustration">
+          <div class="z-10">
+            <h3>{{ post.title }}</h3>
+            <p>{{ post.created_at|date:"F j, Y" }}</p>
+            <a href="{% url 'single_post' slug=post.slug %}" class="btn" style="margin-top: 1rem; display: inline-block; font-size: 0.85rem; padding: 0.4rem 0.8rem;">Read More</a>
+          </div>
+        </article>
+      {% empty %}
+        <p>No blog posts found.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}
