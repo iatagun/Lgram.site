@@ -4,13 +4,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Linguistic Alchemist</title>
+  <title>Linguistic Gram</title>
   <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <link rel="icon" href="{% static 'images/lgram-logo.png' %}" type="image/x-icon">
 </head>
 <body>
   <header>
     <div class="container nav">
-      <h1><a href="{% url 'index' %}" style="text-decoration: none; color: inherit;">Linguistic Alchemist</a></h1>
+      <h1 style="display: flex; align-items: center; gap: 0.5rem;">
+        <a href="{% url 'index' %}" style="text-decoration: none; color: inherit; display: flex; align-items: center;">
+          <img src="{% static 'images/lgram-logo.png' %}" alt="Lgram Logo" style="height: 50px; width: auto;">
+        </a>
+      </h1>
+      
 
       <nav>
         <a href="{% url 'index' %}#about">About</a>

@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section dark">
+  <div class="section-inner">
+    <h2 class="section-title">Ziyaret Grafiği (Son 7 Gün)</h2>
+
+    <div style="max-width: 800px; margin: 2rem auto;">
+      <canvas id="dailyChart" width="400" height="150"></canvas>
+    </div>
+
+    <hr style="margin: 2rem 0; border-color: #555;" />
+
+    <h3 class="section-title">İçerik Sayıları (Toplam)</h3>
+    <p><strong>Blog Ziyaretleri:</strong> {{ total_blog }}</p>
+    <p><strong>Proje Ziyaretleri:</strong> {{ total_project }}</p>
+    <p><strong>Toplam:</strong> {{ total_all }}</p>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const ctx = document.getElementById('dailyChart').getContext('2d');
+  const dailyChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: {{ blog_labels|safe }},
+      datasets: [
+        {
+          label: 'Blog Ziyaretleri',
+          data: {{ blog_counts|safe }},
+          borderColor: 'rgba(54, 162, 235, 1)',
+          backgroundColor: 'rgba(54, 162, 235, 0.2)',
+          fill: true,
+          tension: 0.4
+        },
+        {
+          label: 'Proje Ziyaretleri',
+          data: {{ project_counts|safe }},
+          borderColor: 'rgba(255, 99, 132, 1)',
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          fill: true,
+          tension: 0.4
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: { color: "#ccc" }
+        },
+        x: {
+          ticks: { color: "#ccc" }
+        }
+      },
+      plugins: {
+        legend: {
+          labels: {
+            color: "#fff"
+          }
+        }
+      }
+    }
+  });
+</script>
+{% endblock %}
